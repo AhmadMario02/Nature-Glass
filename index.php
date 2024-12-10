@@ -1,7 +1,7 @@
 <?php
 
     include("header.php");
-    //require("koneksi.php")
+    require("inc.connection.php")
 
 ?>
     <?php
@@ -31,5 +31,4 @@
 
     include("footer.php");
 
-    
 ?>
