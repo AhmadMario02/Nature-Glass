@@ -4,11 +4,10 @@ if (isset($_POST['btnLogin'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $objUser = new User();
-    $objUser->hasil = true;
-    $objUser->ValidateEmail($email);
+    $objUser->ValidateEmail($email);//cek dulu emailnya ada apa kagak
 
-    if ($objUser->hasil) {
-        $ismatch = true; //password_verify($password, $objUser->password) //untuk hashing;
+    if ($objUser->hasil) {//kalau emailnya ada pasti hasilnya true
+        $ismatch = ($password == $objUser->password); //password_verify($password, $objUser->password) //untuk hashing;
         if ($ismatch) {
             if (!isset($_SESSION)) {
                 session_start();
@@ -20,7 +19,7 @@ if (isset($_POST['btnLogin'])) {
             echo "<script>alert('Login sukses " . $_SESSION["username"] . "');</script>";
             echo '<script>window.location = "dashboardAdmin.php";</script>';
         } else {
-            echo "<script>alert('Password tidak sesuai');</script>";
+            echo "<script>alert('Email atau password tidak sesuai');</script>";
         }
     } else {
         echo "<script>alert('Email tidak terdaftar');</script>";
