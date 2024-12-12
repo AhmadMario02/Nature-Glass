@@ -4,10 +4,10 @@ if (!isset($_SESSION)) {
 }
 if (!isset($_SESSION["role"])) {
     echo "<script>alert('Silahkan Login untuk mengakses halaman ini!')</script>";
-    echo '<script>window.location="index.php?p=loginpage"</script>';
+    echo '<script>window.location="index.php?p=login"</script>';
 } else {
     if ($_SESSION["role"] != 'adm') {
         echo "<script>alert('Hanya Admin yang dapat mengakses halaman ini!')</script>";
-        echo '<script>window.location="index.php?p=loginpage"</script>';
+        echo '<script>window.location="index.php?p=login"</script>';
     }
 }

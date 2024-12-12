@@ -25,7 +25,7 @@ class User extends Connection
 
     public function AddUser()
     {
-        $sql = "INSERT INTO user(email, password, username, role)
+        $sql = "INSERT INTO user_account(email, password, username, role)
                 values( '$this->email',
                         '$this->password',
                         '$this->username',

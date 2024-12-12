@@ -4,22 +4,21 @@ if (isset($_POST['btnLogin'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $objUser = new User();
-    $objUser->ValidateEmail($email);//cek dulu emailnya ada apa kagak
+    $objUser->ValidateEmail($email);
 
-    if ($objUser->hasil) {//kalau emailnya ada pasti hasilnya true
-        $ismatch = ($password == $objUser->password); //password_verify($password, $objUser->password) //untuk hashing;
+    if ($objUser->hasil) {
+        $ismatch = password_verify($password, $objUser->password);
         if ($ismatch) {
             if (!isset($_SESSION)) {
                 session_start();
             }
-            $_SESSION["id"] = $objUser->id;
             $_SESSION["username"] = $objUser->username;
             $_SESSION["email"] = $objUser->email;
             $_SESSION["role"] = $objUser->role;
             echo "<script>alert('Login sukses " . $_SESSION["username"] . "');</script>";
             echo '<script>window.location = "dashboardAdmin.php";</script>';
         } else {
-            echo "<script>alert('Email atau password tidak sesuai');</script>";
+            echo "<script>alert('Password tidak sesuai');</script>";
         }
     } else {
         echo "<script>alert('Email tidak terdaftar');</script>";
@@ -43,8 +42,11 @@ if (isset($_POST['btnLogin'])) {
                             <label for="password">Password</label>
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block" name="btnLogin">Login</button>
+                        <button type="submit" class="btn btn-primary btn-block my-2" name="btnLogin">Login</button>
                     </form>
+                    <div>
+                        <label>Belum punya akun?<a class="link m-2" href="index.php?p=register">Register</a></label>
+                    </div>
                 </div>
             </div>
         </div>
