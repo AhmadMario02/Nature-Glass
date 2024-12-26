@@ -4,5 +4,5 @@ if (!isset($_SESSION))
   session_start();
 }
 session_destroy();
-echo '<script>window.location = "../index.php"; </script>';
+echo '<script>window.location = "./index.php"; </script>';
 ?>
