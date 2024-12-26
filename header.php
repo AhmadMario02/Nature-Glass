@@ -13,9 +13,14 @@
             <a class="navbar-brand" href="index.php?p=home">Nature Glass</a>
             <div class="d-flex align-middle">
                 <a class="nav-link m-2" href="index.php?p=home">Beranda</a>
-                <a class="nav-link m-2" href="index.php?p=catalogue">Katalog</a>
                 <a class="nav-link m-2" href="index.php?p=about">Tentang Kami</a>
+                <a class="nav-link m-2" href="#">Edukasi</a>
+                <a class="nav-link m-2" href="index.php?p=catalogue">Produk</a>
             </div>
+                <div class="d-flex">
+                    <a class="btn" href="index.php?p=login">Masuk</a>
+                    <a class="btn btn-outline-success" href="index.php?p=register">Daftar</a>
+                </div>
     </nav>        
     </header>
     <br>
