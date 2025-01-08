@@ -25,30 +25,26 @@ if (isset($_POST['btnLogin'])) {
     }
 }
 ?>
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header text-center">
-                    Login
+<div class="container">
+    <div class="row text-center mb-5">
+        <div class="col">
+            <h1>Masuk</h1>
+            <form action="" method="post">
+                <div class="mb-3 text-start">
+                    <label for="email" class="form-label">Username/Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
                 </div>
-                <div class="card-body">
-                    <form action="" method="post">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block my-2" name="btnLogin">Login</button>
-                    </form>
-                    <div>
-                        <label>Belum punya akun?<a class="link m-2" href="index.php?p=register">Register</a></label>
-                    </div>
+                <div class="mb-3 text-start">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
                 </div>
-            </div>
+                <button type="submit" class="btn btn-success" name="btnLogin">Login</button>
+                <div class="form-text">Belum punya akun? <a class="d-inline nav-link fw-bold" href="index.php?p=register">Daftar</a></div>
+            </form>
+        </div>
+        <div class="col">
+            <img src="https://images.pexels.com/photos/2100238/pexels-photo-2100238.jpeg" class="rounded" style="width:100%;">
+            <figcaption><a class="nav-link" href="https://www.pexels.com/id-id/foto/dekorasi-meja-kaca-bening-2100238/">Foto oleh Isabel Araújo dari Pexels</a></figcaption>
         </div>
     </div>
 </div>

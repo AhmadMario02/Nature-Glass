@@ -22,33 +22,30 @@ if(isset($_POST['btnRegist'])){
     }
 }
 ?>
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header text-center">
-                    Register
+<div class="container">
+    <div class="row text-center mb-5">
+        <div class="col">
+            <img src="https://images.pexels.com/photos/4751987/pexels-photo-4751987.jpeg" class="rounded" style="width:100%;">
+            <figcaption><a class="nav-link" href="https://www.pexels.com/id-id/foto/dedaunan-daun-daun-batu-bebatuan-4751987/">Foto oleh Photo By: Kaboompics.com dari Pexels</a></figcaption>
+        </div>
+        <div class="col">
+            <h1>Daftar</h1>
+            <form action="" method="post">
+                <div class="mb-3 text-start">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="username" class="form-control" id="username" name="username" required>
                 </div>
-                <div class="card-body">
-                    <form action="" method="post">
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary btn-block my-3" name="btnRegist">Register</button>
-                        </div>
-                    </form>
+                <div class="mb-3 text-start">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
                 </div>
-            </div>
+                <div class="mb-3 text-start">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-success" name="btnRegist">Daftar</button>
+                <div class="form-text">Sudah punya akun? <a class="d-inline nav-link fw-bold" href="index.php?p=login">Login</a></div>
+            </form>
         </div>
     </div>
 </div>

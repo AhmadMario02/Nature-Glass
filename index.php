@@ -1,6 +1,14 @@
 <?php
+    if (!isset($_SESSION)) {
+        session_start();
+    }
 
-    include("header.php");
+    if (!isset($_SESSION["role"])) { //cek status session
+        include("header.php"); //tidak login = guest
+    } else {
+        include("headerUser.php");//login = user
+    }
+
     require("inc.connection.php")
 
 ?>
