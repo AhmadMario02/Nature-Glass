@@ -1,5 +1,18 @@
 <?php
-    require_once("pages/auth_login.php"); //Menu keranjang hanya bisa diakses setelah login
+require_once("pages/auth_login.php");
+include './class/cart.php';
+
+$id = $_SESSION['id'];
+$cart = new Cart();
+$cart->getCartProducts($id);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id_product = $_POST['id_product'];
+    $qty = $_POST['qty'];
+    $message = $cart->addProductToCart($id, $id_product, $qty);
+    echo $message;
+}
+$cartProducts = $cart->getCartProducts($id);
 ?>
 <div style="font-family: 'Poppins';">
     <section class="container mb-5" id="tabel">
@@ -14,36 +27,25 @@
                 </tr>
             </thead>
             <tbody>
+            <?php foreach ($cartProducts as $cartProduct): ?>
                 <tr>
-                    <td>Produk</td>
-                    <td>Rp.55.000</td>
+                    <td><?php echo $cartProduct['p_name']; ?></td>
+                    <td>Rp. <?php echo $cartProduct['p_price']; ?></td>
                     <td class="d-flex justify-content-start gap-2">
-                    <button class="btn btn-secondary" onclick="decrementAmount()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
-                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                          <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
-                        </svg>
-                    </button>    
-                    <p id="amount" class="align-items-center">0</p>
-                    <button class="btn btn-secondary" onclick="incrementAmount()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
-                        </svg>
-                    </button>    
+                        <p id="amount" class="align-items-center"><?php echo $cartProduct['qty']; ?></p>
                     </td>
-                    <td>Rp.110.000</td>
+                    <td>Rp. <?php echo $cartProduct['p_price']*$cartProduct['qty']; ?></td>
                     <td>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <button class="btn btn-danger">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                                  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
-                                </svg>
-                            </button>
+                                <button class="btn btn-danger" name="deleteProduct">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                                    </svg>
+                                </button>
                         </div>
                     </td>
                 </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </section>
@@ -51,7 +53,7 @@
         <div class="row">
             <div class="col">
                 <h5>Alamat</h5>
-                <p class="d-inline" id="name"><strong>Nama Penerima</strong></p>
+                <p class="d-inline" id="name"><strong><?php echo $_SESSION['username']?></strong></p>
                 <p class="d-inline" id="phone">+62-123-4567-890</p>
                 <p>Jalan, Nomor Rumah, Kelurahan, Kecamatan, Kota, Provinsi</p>
                 <!-- Dropdown-->
@@ -94,7 +96,7 @@
                 </div>
                 <div class="row d-flex justify-content-between">
                     <div class="col">
-                        <b>Total:</b>
+                        <b>Total Checkout:</b>
                     </div>
                     <div class="col">
                         <p id="total">Rp.120.000</p>
@@ -121,16 +123,4 @@
             }
         });
     });
-
-    let amount = 0; 
-    function incrementAmount() { 
-        amount++; 
-        document.getElementById('amount').innerText = amount; 
-    } 
-    function decrementAmount() { 
-        if (amount > 0) { 
-            amount--; 
-            document.getElementById('amount').innerText = amount; 
-        } 
-    }
 </script>

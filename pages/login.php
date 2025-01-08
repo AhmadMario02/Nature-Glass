@@ -12,6 +12,7 @@ if (isset($_POST['btnLogin'])) {
             if (!isset($_SESSION)) {
                 session_start();
             }
+            $_SESSION["id"] = $objUser->id;
             $_SESSION["username"] = $objUser->username;
             $_SESSION["email"] = $objUser->email;
             $_SESSION["role"] = $objUser->role;
