@@ -16,7 +16,7 @@ if (isset($_POST['btnLogin'])) {
             $_SESSION["email"] = $objUser->email;
             $_SESSION["role"] = $objUser->role;
             echo "<script>alert('Login sukses " . $_SESSION["username"] . "');</script>";
-            echo '<script>window.location = "dashboardAdmin.php";</script>';
+            echo '<script>window.location = "index.php";</script>';
         } else {
             echo "<script>alert('Password tidak sesuai');</script>";
         }

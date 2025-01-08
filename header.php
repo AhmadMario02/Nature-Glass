@@ -10,11 +10,13 @@
 <body>
     <header style="background-color: #91C499;font-family: Montserrat;">
     <nav class="navbar container">
-            <a class="navbar-brand" href="index.php?p=home">Nature Glass</a>
+            <a class="navbar-brand" href="index.php?p=home">
+            <img src="assets/nature glass.png" height="50" class="d-inline-block align-text-top">
+            </a>
             <div class="d-flex align-middle">
                 <a class="nav-link m-2" href="index.php?p=home">Beranda</a>
                 <a class="nav-link m-2" href="index.php?p=about">Tentang Kami</a>
-                <a class="nav-link m-2" href="#">Edukasi</a>
+                <a class="nav-link m-2" href="index.php?p=education">Edukasi</a>
                 <a class="nav-link m-2" href="index.php?p=catalogue">Produk</a>
             </div>
                 <div class="d-flex">
