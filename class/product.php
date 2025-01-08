@@ -1,9 +1,9 @@
 <?php
 class Product extends Connection {
-    private $id_product= '';
-    private $name= '';
-    private $description= '';
-    private $price= '';
+    public $id_product= '';
+    public $name= '';
+    public $description= '';
+    public $price= '';
 
     private $hasil = false;
     public $message = '';
@@ -79,7 +79,7 @@ class Product extends Connection {
     }
 
     public function SelectOneProduct(){
-        $sql = "SELECT FROM product WHERE id_product = '$this->id_product'";
+        $sql = "SELECT * FROM product WHERE id_product = '$this->id_product'";
         $result = mysqli_query($this->connection, $sql);
         if(mysqli_num_rows($result) == 1){
             $this->hasil = true;

@@ -1,3 +1,18 @@
+<?php
+    include './class/product.php';
+    if(isset($_GET['id'])){
+    
+        $product = new Product();
+        $product->id_product = $_GET['id'];
+        $product->SelectOneProduct();
+        $productName = $product->__get('name');
+        $productDescription = $product->__get('description');
+        $productPrice = $product->__get('price');
+    } else {
+        echo "Produk tidak ditemukan.";
+        exit;
+    }
+?>
 <section class="mb-5" name="productDetail" style="height: 300px; font-family:'Poppins'">
     <div class="container">
         <div class="row">
@@ -24,11 +39,11 @@
                     </button>
                 </div>
                 <p>Harga</p>
-                <h2 class="fw-bold">Rp.55.000</h2>
+                <h2 class="fw-bold">Rp. <?php echo $productPrice?></h2>
             </div>
             <div class="col">
-                <h1 id="productName" name="productName">Nama Produk</h1>
-                <p>Deskripsi produk secara singkat</p>
+                <h1 id="productName" name="productName"><?php echo $productName?></h1>
+                <p><?php echo $productDescription?></p>
                 <div class="d-inline">
                     <button type="button" class="btn btn-secondary" style="border-radius:50%;" onclick="decrement()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
@@ -133,24 +148,29 @@
 </section>
 <section class="container mb-5" style="font-family:'Poppins'">
     <h1 class="mb-3">Produk Kami Lainnya</h1>
-    <div class="row">
-        <div class="col d-flex gap-3">
-            <div class="card" style="width: 20%;">
-                <img src="./assets/Dune Terrarium.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Dune Terrarrium</h5>
-                    <a href="#" class="btn btn-primary">Rp. 55.000</a>
-                </div>
+    <?php
+// Inisialisasi objek Product
+$productObj = new Product();
+$produkList = $productObj->SelectAllProduct();
+?>
+
+  <div class="row">
+    <?php if (!empty($produkList)) { 
+      foreach ($produkList as $product) { ?>
+        <div class="col-md-4 d-flex justify-content-center">
+          <div class="card" style="width: 75%;">
+            <img src="./assets/<?php echo $product->__get('name'); ?>.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><?php echo $product->__get('name'); ?></h5>
+              <a href="index.php?p=detailproduct&id=<?php echo $product->__get('id_product'); ?>" class="btn btn-primary">Rp. <?php echo $product->__get('price'); ?></a>
             </div>
-            <div class="card" style="width: 20%;">
-                <img src="./assets/Forest Terrarium.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Forest Terrarrium</h5>
-                    <a href="#" class="btn btn-primary">Rp. 55.000</a>
-                </div>
-            </div>
+          </div>
         </div>
-    </div>
+    <?php } 
+    } else { ?>
+      <p class="text-center">Tidak ada produk yang tersedia.</p>
+    <?php } ?>
+  </div>
 </section>
 <script>
     let count = 0;
