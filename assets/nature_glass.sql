@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2025 at 12:19 PM
+-- Generation Time: Jan 09, 2025 at 04:30 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,56 @@ SET time_zone = "+00:00";
 --
 -- Database: `nature_glass`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `address`
+--
+
+CREATE TABLE `address` (
+  `id_address` int(10) NOT NULL,
+  `id` int(10) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `provinsi` varchar(50) NOT NULL,
+  `kota` varchar(50) NOT NULL,
+  `kecamatan` varchar(50) NOT NULL,
+  `postcode` int(5) NOT NULL,
+  `detailAddress` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `address`
+--
+
+INSERT INTO `address` (`id_address`, `id`, `username`, `phone`, `provinsi`, `kota`, `kecamatan`, `postcode`, `detailAddress`) VALUES
+(1, 13, 'UAS', '081234567890', 'DKI Jakarta', 'Jakarta Selatan', 'Pasar Minggu', 12560, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id_cart` int(5) NOT NULL,
+  `id` int(10) NOT NULL,
+  `id_product` int(10) NOT NULL,
+  `qty` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id_cart`, `id`, `id_product`, `qty`) VALUES
+(1, 11, 1, 2),
+(2, 11, 2, 1),
+(11, 11, 3, 2),
+(12, 13, 1, 2),
+(13, 13, 2, 2),
+(14, 13, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -66,11 +116,27 @@ INSERT INTO `user_account` (`id`, `email`, `password`, `username`, `role`) VALUE
 (2, 'admin@gmail.com', '123', 'Real Admin', 'adm'),
 (10, 'raihansultan@gmail.com', '$2y$10$dqYDHym9hhEyXwSR/M1aneiD0YAufYV3ivQseG5YnBYL.kzHJzEAm', 'Raihan Sultan', 'usr'),
 (11, 'baru@gmail.com', '$2y$10$lcfLlnWvxgmElRpFhap/7Oe8Tf2LPa/Jb0JlRdm5a/4jzwcswgkDy', 'Baru', 'usr'),
-(12, 'daftar@gmail.com', '$2y$10$V8LQFElBoEdqOilWG0Hr0.YqJRT9DbKJzbKH3920QBcTWYulaitYS', 'Pendaftar', 'usr');
+(12, 'daftar@gmail.com', '$2y$10$V8LQFElBoEdqOilWG0Hr0.YqJRT9DbKJzbKH3920QBcTWYulaitYS', 'Pendaftar', 'usr'),
+(13, 'uas@gmail.com', '$2y$10$Nu.5dIasmXsxuPiD0WDmyOG/g6b04lggXngpY0OMJaHYQTCT6pgry', 'uas', 'usr');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `address`
+--
+ALTER TABLE `address`
+  ADD PRIMARY KEY (`id_address`),
+  ADD KEY `id` (`id`);
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id_cart`),
+  ADD KEY `id` (`id`),
+  ADD KEY `id_product` (`id_product`);
 
 --
 -- Indexes for table `product`
@@ -89,6 +155,18 @@ ALTER TABLE `user_account`
 --
 
 --
+-- AUTO_INCREMENT for table `address`
+--
+ALTER TABLE `address`
+  MODIFY `id_address` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id_cart` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
@@ -98,7 +176,24 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `user_account`
 --
 ALTER TABLE `user_account`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `address`
+--
+ALTER TABLE `address`
+  ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user_account` (`id`);
+
+--
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`id`) REFERENCES `user_account` (`id`),
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`id_product`) REFERENCES `product` (`id_product`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
