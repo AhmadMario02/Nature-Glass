@@ -1,3 +1,22 @@
+<?php
+include './class/address.php';
+if (isset($_GET['id'])) {
+
+    $address = new Address();
+    $address->id_address = $_GET['id'];
+    $address->SelectOneAddress();
+    $username = $address->__get('username');
+    $phone = $address->__get('phone');
+    $provinsi = $address->__get('provinsi');
+    $kota = $address->__get('kota');
+    $kecamatan = $address->__get('kecamatan');
+    $postcode = $address->__get('postcode');
+    $detailAddress = $address->__get('detailAddress');
+} else {
+    echo "Alamat tidak ditemukan.";
+    exit;
+}
+?>
 <div class="container rounded mb-5 p-3" style="font-family:'Poppins';box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
     <h1 class="fw-bold text-center mb-3">Alamat</h1>
     <form action="" method="post">
@@ -5,11 +24,11 @@
             <div class="col">
                 <div class="mb-3 text-start">
                     <label for="username" class="form-label">Nama Penerima</label>
-                    <input type="text" class="form-control" id="username" name="username" required>
+                    <input type="text" class="form-control" id="username" name="username" required value="<?php echo $username?>">
                 </div>
                 <div class="mb-3 text-start">
                     <label for="phone" class="form-label">Nomor Telepon</label>
-                    <input type="tel" class="form-control" id="phone" name="phone" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}">
+                    <input type="tel" class="form-control" id="phone" name="phone" value="<?php echo $phone?>">
                 </div>
                 <div class="mb-3 text-start">
                     <label for="provinsi" class="form-label">Provinsi</label>
@@ -33,7 +52,7 @@
                 </div>
                 <div class="mb-3 text-start">
                     <label for="postcode" class="form-label">Kode Pos</label>
-                    <input type="text" class="form-control" id="postcode" name="postcode" required>
+                    <input type="text" class="form-control" id="postcode" name="postcode" required value="<?php echo $postcode?>">
                 </div>
                 <div class="mb-3 text-start">
                     <label for="detailAddress" class="form-label">Detail Alamat</label>

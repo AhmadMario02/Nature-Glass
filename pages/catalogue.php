@@ -1,3 +1,6 @@
+<?php
+include './class/product.php';
+?>
 <div class="container">
     <h1 class="text-center" style="font-family: Montserrat;">Katalog Produk</h1>
     <h1 class="text-center mb-5" style="font-family: Montserrat; color:#123411;">Terrarium Package</h1>
@@ -6,16 +9,32 @@
             <img src="assets/Barren Desert Terrarium.jpg" class="img-fluid rounded">
         </div>
         <div class="col-8">
-            <h2>Barren Desert</h2>
+            <?php 
+                $barren = new Product();
+                $barren->id_product = 3;
+                $barren->SelectOneProduct();
+                $barrenName = $barren->__get('name');
+                $barrenDescription = $barren->__get('description');
+                $barrenPrice = $barren->__get('price');
+            ?>
+            <h2><?php echo $barrenName?></h2>
             <hr class="border border-1">
-            <p>Deskripsi produk</p>
+            <p><?php echo $barrenDescription?></p>
         </div>
     </div>
     <div class="row mb-5">
         <div class="col-8 text-end">
-            <h2>Forest</h2>
+            <?php 
+                $forest = new Product();
+                $forest->id_product = 2;
+                $forest->SelectOneProduct();
+                $forestName = $forest->__get('name');
+                $forestDescription = $forest->__get('description');
+                $forestPrice = $forest->__get('price');
+            ?>
+            <h2><?php echo $forestName?></h2>
             <hr class="border border-1">
-            <p>Deskripsi produk</p>
+            <p>><?php echo $forestDescription?></p>
         </div>
         <div class="col-4">
             <img src="assets/Forest Terrarium.jpg" class="img-fluid rounded">
@@ -26,9 +45,17 @@
             <img src="assets/Dune Terrarium.jpg" class="img-fluid rounded">
         </div>
         <div class="col-8">
-            <h2>Dune</h2>
+            <?php 
+                $dune = new Product();
+                $dune->id_product = 1;
+                $dune->SelectOneProduct();
+                $duneName = $dune->__get('name');
+                $duneDescription = $dune->__get('description');
+                $dunePrice = $dune->__get('price');
+            ?>
+            <h2><?php echo $duneName?></h2>
             <hr class="border border-1">
-            <p>Deskripsi produk</p>
+            <p><?php echo $duneDescription?></p>
         </div>
     </div>
 </div>

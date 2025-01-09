@@ -1,5 +1,5 @@
 </main>
-    <footer class="bd-footer py-2 bg-body-tertiary absolute-bottom" style="font-family: Montserrat; background-color: #91C499; text-decoration: none;">
+    <footer class="bd-footer py-2 bg-body-tertiary absolute-bottom" style="font-family: Montserrat; background-color: #37735B; color:antiquewhite; text-decoration: none;">
         <div class="container">
             <div class="row">
                 <div class="col flex-column">

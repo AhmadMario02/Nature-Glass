@@ -57,7 +57,7 @@ $cartProducts = $cart->getCartProducts($id);
                 <p class="d-inline" id="phone">+62-123-4567-890</p>
                 <p>Jalan, Nomor Rumah, Kelurahan, Kecamatan, Kota, Provinsi</p>
                 <!-- Dropdown-->
-                <button class="btn btn-outline-primary">Pilih Alamat <i class="bi bi-chevron-down"></i></button>
+                <a class="btn btn-outline-primary" href="index.php?p=formAddress&id=<?php echo $_SESSION['id']?>">Pilih Alamat <i class="bi bi-chevron-down"></i></a>
             </div>
             <div class="col">
                 <h5>Opsi Pengiriman</h5>

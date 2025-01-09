@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <header style="background-color: #91C499;font-family: Montserrat;">
+    <header style="background-color: #37735B; color:antiquewhite;font-family: Montserrat;">
         <nav class="navbar container">
             <a class="navbar-brand" href="index.php?p=home">
             <img src="assets/nature glass.png" height="50" class="d-inline-block align-text-top">
